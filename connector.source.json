@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "extensionId": "irodori.scylladb",
+  "visibility": "public",
+  "version": "0.1.0",
+  "connector": {
+    "id": "scylladb.connector",
+    "engine": "scylladb",
+    "label": "ScyllaDB",
+    "aliases": [
+      "scylladb",
+      "ScyllaDB"
+    ],
+    "defaultPort": 9042,
+    "wire": "cassandra",
+    "module": "scylladb.driver",
+    "features": [
+      "metadata",
+      "streaming"
+    ]
+  },
+  "connection": {
+    "endpoint": {
+      "modes": [
+        "hostPort",
+        "connectionString"
+      ],
+      "defaultPort": 9042,
+      "fields": [
+        {
+          "id": "host",
+          "label": "Host",
+          "type": "string",
+          "profileField": "host",
+          "required": true
+        },
+        {
+          "id": "port",
+          "label": "Port",
+          "type": "number",
+          "profileField": "port",
+          "default": 9042
+        },
+        {
+          "id": "database",
+          "label": "Database",
+          "type": "string",
+          "profileField": "database"
+        }
+      ]
+    },
+    "authMethods": [
+      "none",
+      "connectionString",
+      "userPassword",
+      "saslPlain",
+      "saslScram",
+      "clientCertificate",
+      "kerberos",
+      "customDriverOptions"
+    ],
+    "tls": "optional",
+    "transports": "default",
+    "optionNamespaces": [
+      "cassandra",
+      "scylladb"
+    ],
+    "customDriverOptions": true
+  },
+  "runtime": {
+    "driverLinked": false
+  },
+  "source": {
+    "knowledgeEngineStatus": "wired",
+    "adapter": "db/cassandra.rs"
+  }
+}
