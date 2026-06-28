@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "visibility": "public",
+  "extensionId": "irodori.scylladb",
+  "connector": {
+    "id": "scylladb.connector",
+    "engine": "scylladb",
+    "label": "ScyllaDB",
+    "aliases": [
+      "scylladb",
+      "ScyllaDB"
+    ],
+    "defaultPort": 9042,
+    "wire": "cassandra",
+    "module": "scylladb.driver",
+    "features": [
+      "metadata",
+      "streaming"
+    ]
+  },
+  "runtime": {
+    "abi": "irodori.connector.native.v1",
+    "module": {
+      "id": "scylladb.driver",
+      "path": "dist/native",
+      "platforms": [
+        "windowsX64",
+        "windowsArm64",
+        "macosX64",
+        "macosArm64",
+        "linuxX64",
+        "linuxArm64"
+      ]
+    },
+    "crate": "irodori_extension_scylladb",
+    "entrypoints": [
+      "irodori_extension_abi_version",
+      "irodori_connector_engine_json",
+      "irodori_extension_manifest_json",
+      "irodori_connector_config_json",
+      "irodori_connector_call_json",
+      "irodori_connector_free_buffer"
+    ],
+    "supportedCalls": [
+      "health",
+      "describe",
+      "manifest",
+      "config"
+    ],
+    "driverLinked": false
+  },
+  "source": {
+    "marketplaceId": "irodori.scylladb",
+    "repository": "https://github.com/hjosugi/irodori-extension-scylladb",
+    "knowledgeEngineStatus": "wired",
+    "adapter": "db/cassandra.rs",
+    "adapterSha256": "8609b051e3c1d9c890b613266d04bb25a7350fcab8a0b81c64bc530ebc269fa9"
+  }
+}
