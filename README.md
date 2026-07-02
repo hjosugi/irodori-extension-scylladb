@@ -11,12 +11,12 @@ This connector is listed in the public Irodori extension marketplace.
 - Wire: `cassandra`
 - Default port: `9042`
 - Native ABI: `irodori.connector.native.v1`
-- Driver linked: `false`
+- Driver linked: `true`
 
 A desktop adapter source snapshot is staged in `native/source/` from `db/cassandra.rs`.
 
 Connector metadata lives in `connector.config.json` and `irodori.extension.json`.
-The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpers in `src/abi.rs`, and metadata-only behavior in `src/stub.rs` until the engine driver is linked.
+The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpers in `src/abi.rs`, and ScyllaDB/Cassandra CQL behavior in `src/driver.rs`.
 
 ## Connection Metadata
 
@@ -38,7 +38,7 @@ The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpe
 
 ## ABI Calls
 
-The scaffold handles these JSON requests today:
+The driver handles these JSON requests today:
 
 | Method | Response |
 |---|---|
@@ -46,9 +46,10 @@ The scaffold handles these JSON requests today:
 | `describe` / `capabilities` | Embedded manifest and connector config. |
 | `manifest` | Raw `irodori.extension.json`. |
 | `config` | Raw `connector.config.json`. |
-
-
-Driver operations such as `connect`, `query`, and `metadata` intentionally return `connector.driverNotLinked` until the engine implementation is connected.
+| `connect` | Opens a CQL session and reads `system.local.release_version`. |
+| `query` | Runs a CQL statement through the Scylla/Cassandra Rust driver. |
+| `metadata` | Reads table columns from `system_schema.columns`. |
+| `close` | Removes the cached native connection. |
 
 ## Development
 
