@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "extensionId": "irodori.scylladb",
   "visibility": "public",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "connector": {
     "id": "scylladb.connector",
     "engine": "scylladb",

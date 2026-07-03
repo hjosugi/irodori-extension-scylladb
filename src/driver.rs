@@ -426,7 +426,7 @@ fn node_from_url(value: &str) -> Option<String> {
         .next()
         .unwrap_or(without_scheme)
         .split('@')
-        .last()
+        .next_back()
         .unwrap_or(without_scheme);
     (!host_port.trim().is_empty()).then(|| host_port.trim().to_string())
 }
