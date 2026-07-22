@@ -1,6 +1,7 @@
 [package]
 name = "irodori-extension-scylladb"
-version = "0.1.3"
+version = "0.1.4"
+publish = false
 edition = "2021"
 license = "0BSD"
 description = "Native Irodori Table connector extension for ScyllaDB."
@@ -23,7 +24,7 @@ name = "irodori_extension_scylladb"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-irodori-connector-abi = { git = "https://github.com/hjosugi/irodori-kit", tag = "v0.6.0" }
+irodori-connector-abi = { git = "https://github.com/hjosugi/irodori-kit", tag = "v0.7.2" }
 scylla = "1.7"
 serde_json = "1"
 tokio = { version = "1", features = ["rt-multi-thread"] }
